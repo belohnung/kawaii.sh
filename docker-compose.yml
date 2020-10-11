@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  kawaiish:
+    build: ./
+    volumes:
+      - ./uploads:/uploads
+      - ./config.js:/usr/src/app/config.js
+    networks:
+      - db
+    ports:
+      - 8080:8080
+
+  mongo:
+    image: mongo
+    restart: always
+    networks:
+      - db
+    volumes:
+      - ./data/db:/data/db
+networks:
+  db:
